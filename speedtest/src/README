@@ -1,0 +1,21 @@
+Speedtest: Performance Measurement Application
+----------------------------------------------
+
+You can use these source to create a Round2 performance measurement
+application. Simply follow these steps:
+
+1. Put these file together with the source files from
+   the Round2 implementation you want to test.
+
+2. Edit the api.h and pst_api.h files to set up the parameter sets and
+   A creation variant to use for testing.
+
+3. Compile using e.g.:
+
+    gcc -O3 -fomit-frame-pointer *.c -lcrypto -lkeccak -lm -o speedtest
+
+4. Run the tests, optionally specifying the number times the tests
+   need to be repeated (-r N):
+
+   ./speedtest
+
