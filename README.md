@@ -45,8 +45,8 @@ following conditions must be met:
 ## Building the implementations
 
 After installing the prerequisites, you can build the implementations using the
-provided `Makefile` inside the [reference](../blob/master/reference/Makefile)
-and [optimized](../blob/master/optimized/Makefile) directories.
+provided `Makefile` inside the [reference](../master/reference)
+and [optimized](../master/optimized) directories.
 
 The following make targets are available:
 
@@ -76,7 +76,7 @@ The example applications are `kem_example` for Round2.KEM and
 The applications take as argument `-aN` to specify the api parameter set to
 use, where N is a number between 0 and 29,
 (the parameters set are defined in
-[`api_to_internal_parameters.h`](../blob/master/reference/src/api_to_internal_parameters.h)),
+[`api_to_internal_parameters.h`](../master/reference/src/api_to_internal_parameters.h)),
 and `-fN` to specify the fn variant, where N is a number between 0 and 2, as
 described in the specification.  Not necessary for parameter sets that make use
 of the ring construction.
@@ -85,4 +85,4 @@ of the ring construction.
 ## Speed Tests
 
 Information about speed tests can be found in the
-[speedtest](../blob/master/speedtest/) directory.
+[speedtest](../master/speedtest/) directory.
