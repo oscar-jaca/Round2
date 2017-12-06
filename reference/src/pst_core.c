@@ -76,6 +76,8 @@ static int radix_sort(uint32_t *arr, size_t len) {
         memcpy(arr + ptr[0], bucket + len, ptr[1] * sizeof (*arr));
     }
 
+    free(bucket);
+
     return 0;
 }
 

@@ -71,7 +71,7 @@ static seed_expander_context seed_expander_ctx;
 /**
  * The AES ECB context as used within in the seed expander.
  */
-static EVP_CIPHER_CTX aes_ctx;
+static EVP_CIPHER_CTX *aes_ctx;
 
 /**
  * Runs AES in ECB mode on the given key and counter (=plaintext).
@@ -84,20 +84,19 @@ static void aes_ecb(unsigned char *buffer, const unsigned char *key, const unsig
     int len;
 
     /* Initialize */
-    EVP_CIPHER_CTX_init(&aes_ctx);
-    if (EVP_EncryptInit_ex(&aes_ctx, EVP_aes_256_ecb(), NULL, key, NULL) != 1) {
+    if (!(aes_ctx = EVP_CIPHER_CTX_new()) || (EVP_EncryptInit_ex(aes_ctx, EVP_aes_256_ecb(), NULL, key, NULL) != 1)) {
         fprintf(stderr, "Failed to initialise encryption engine for DRNG\n");
         exit(EXIT_FAILURE);
     }
 
     /* Run AES ECB */
-    if (EVP_EncryptUpdate(&aes_ctx, buffer, &len, ctr, 16) != 1) {
+    if (EVP_EncryptUpdate(aes_ctx, buffer, &len, ctr, 16) != 1) {
         fprintf(stderr, "Failed to run encrypt for DRNG\n");
         exit(EXIT_FAILURE);
     }
 
     /* Clean up */
-    EVP_CIPHER_CTX_cleanup(&aes_ctx);
+    EVP_CIPHER_CTX_free(aes_ctx);
 }
 
 /**
